@@ -2,6 +2,7 @@ import express from "express"
 import { home } from "./views/index.js"
 import { renderNotesListItems } from "./views/list.js"
 import { NOTES_DATA } from "./data/data.js"
+import { getUUID } from "./lib/getUUID.js"
 
 const app = express()
 const port = 3000
@@ -21,7 +22,7 @@ app.get("/notes", (req, res) => {
 app.post("/notes", (req, res) => {
   const { note } = req.body
 
-  const id = NOTES_DATA.length + 1
+  const id = getUUID()
 
   NOTES_DATA.push({ id, text: note })
 })
